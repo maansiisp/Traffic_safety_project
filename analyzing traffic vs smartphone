@@ -17,10 +17,6 @@ traffic.head()
 sns.lineplot(x = 'Date', y = 'Crashes_per_100k', data = traffic)
 plt.show() 
 
-![image](https://github.com/maansiisp/Traffic_safety_project/assets/159099467/2b664624-d6da-484c-88f0-5909c2448748)
-
-from the plot : 1.The decreasing trend in crash rates from 2006 continuing until 2010 or 2011, and then crash rates begin increasing.
-                2.The data for 2020 is very different from the preceding years.
 
 3. Visualize seasonal rates : using box_plot
 
@@ -28,9 +24,6 @@ from the plot : 1.The decreasing trend in crash rates from 2006 continuing until
 sns.boxplot(x = 'Crashes_per_100k', y = 'Season', data = traffic[traffic.Date.dt.year != 2020])
 plt.show()
 
-image :
-
-from the plot: Winter and Fall appear to have generally higher crash rates than Spring and Summer. 
 
 4. loading the smartphone use dataset
 
@@ -45,9 +38,6 @@ Month_Year	Crashes_per_100k	Season	Smartphone_Survey_Date	Smartphone_usage
 sns.lineplot(x = 'Smartphone_Survey_Date', y = 'Smartphone_usage', data = smartphones)
 plt.show()
 
-image :
-
-from the plot : visibile trend of smartphone usage increasing over time.
 
 5. Visualizing crash rate by smartphone use
 
@@ -55,9 +45,6 @@ from the plot : visibile trend of smartphone usage increasing over time.
 sns.regplot(x = 'Smartphone_usage', y = 'Crashes_per_100k', data = smartphones)
 plt.show()
 
- image :
-
- from the plot : There appears to be a positive linear relationship between the rate of car crashes and the rate of adult smartphone usage in the U.S.
 
 6. To test whether the correlation between Smartphone_usage and Crashes_per_100k is statistically significant
 
@@ -106,7 +93,3 @@ sns.scatterplot(x = [81,81], y = [174.205,157.890],
 plt.legend(title='2020')
 plt.show()
 
-image : 
-
-from the plot : By adding another layer to the regression plot, we can see the difference between the predicted and real crash rates in February 2020.
-This allows us to see how these values compare to the rest of the dataset.
