@@ -17,7 +17,7 @@ traffic.head()
 sns.lineplot(x = 'Date', y = 'Crashes_per_100k', data = traffic)
 plt.show() 
 
-image : 
+![image](https://github.com/maansiisp/Traffic_safety_project/assets/159099467/2b664624-d6da-484c-88f0-5909c2448748)
 
 from the plot : 1.The decreasing trend in crash rates from 2006 continuing until 2010 or 2011, and then crash rates begin increasing.
                 2.The data for 2020 is very different from the preceding years.
