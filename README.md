@@ -31,6 +31,7 @@ from the plot : Winter and Fall appear to have generally higher crash rates than
 ![image](https://github.com/maansiisp/Traffic_safety_project/assets/159099467/d024c8db-60e7-4bbf-bb80-807c4969d4be)
 
 ^^ We can see a trend of smartphone usage increasing over time.
+
 -------------------------------------------------------------------------------------------------------------------------------
 
 4.  Visualize crash rate by smartphone use :
@@ -38,6 +39,7 @@ from the plot : Winter and Fall appear to have generally higher crash rates than
 ![image](https://github.com/maansiisp/Traffic_safety_project/assets/159099467/86fe2f41-8579-44af-b164-5bf2acc75840)
 
 ^^ There appears to be a positive linear relationship between the rate of car crashes and the rate of adult smartphone usage in the U.S.
+
 -------------------------------------------------------------------------------------------------------------------------------
 
 5.  Visualizing the prediction :
