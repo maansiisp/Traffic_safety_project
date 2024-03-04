@@ -1,0 +1,112 @@
+1. # load dataset
+traffic = pd.read_csv('traffic.csv')
+
+# inspect first few rows
+traffic.head()
+
+	Date	Crashes_per_100k	Season
+0	2006-01-01	169.176541	Winter
+1	2006-02-01	154.028836	Winter
+2	2006-03-01	159.930002	Spring
+3	2006-04-01	155.741270	Spring
+4	2006-05-01	168.179208	Spring
+
+2. Visualizing the traffic safety data using  seaborn's sns.lineplot() function :
+
+    # create line plot
+sns.lineplot(x = 'Date', y = 'Crashes_per_100k', data = traffic)
+plt.show() 
+
+image : 
+
+from the plot : 1.The decreasing trend in crash rates from 2006 continuing until 2010 or 2011, and then crash rates begin increasing.
+                2.The data for 2020 is very different from the preceding years.
+
+3. Visualize seasonal rates : using box_plot
+
+  # create box plot by season
+sns.boxplot(x = 'Crashes_per_100k', y = 'Season', data = traffic[traffic.Date.dt.year != 2020])
+plt.show()
+
+image :
+
+from the plot: Winter and Fall appear to have generally higher crash rates than Spring and Summer. 
+
+4. loading the smartphone use dataset
+
+Month_Year	Crashes_per_100k	Season	Smartphone_Survey_Date	Smartphone_usage
+0	Apr-12	   133.213685	      Spring	     4/3/12	                46
+1	Apr-15	   150.077792	      Spring	     4/12/15               	67
+2	Apr-16	   172.401948	      Spring	     4/4/16                	72
+3	Aug-12	   145.403147      	Summer	     8/5/12	                44
+4	Dec-12	   169.160811     	Winter    	 12/9/12               	45
+
+# create line plot
+sns.lineplot(x = 'Smartphone_Survey_Date', y = 'Smartphone_usage', data = smartphones)
+plt.show()
+
+image :
+
+from the plot : visibile trend of smartphone usage increasing over time.
+
+5. Visualizing crash rate by smartphone use
+
+ # create scatter plot with regression line
+sns.regplot(x = 'Smartphone_usage', y = 'Crashes_per_100k', data = smartphones)
+plt.show()
+
+ image :
+
+ from the plot : There appears to be a positive linear relationship between the rate of car crashes and the rate of adult smartphone usage in the U.S.
+
+6. To test whether the correlation between Smartphone_usage and Crashes_per_100k is statistically significant
+
+# find Pearson's r and p-value
+corr, p = pearsonr(smartphones.Smartphone_usage, smartphones.Crashes_per_100k)
+
+# print corr and p
+print("Pearson's r =",  round(corr,3))
+print("p = ", round(p,3))
+Pearson's r = 0.513
+p =  0.005
+
+The Pearson's r correlation coefficient is greater than 0.5, which indicates a moderately strong positive relationship.
+
+7. Make a prediction :
+
+# get the smartphone usage rate from 2019
+smartphones[smartphones['Month_Year'] == "Feb-19"].Smartphone_usage
+7    81
+Name: Smartphone_usage, dtype: int64
+# predict the crash rate in 2020 using the regression equation
+120.664 + (0.661 * 81)
+174.205
+
+8. Compare to the actual rate
+
+# get the actual crash rate in Feb 2020
+traffic[traffic['Date'] == pd.to_datetime("2020-02-01")].Crashes_per_100k
+169    157.88955
+Name: Crashes_per_100k, dtype: float64
+
+: The actual crash rate in Februrary of 2020 was only 157.8895, which was a fair bit lower than our prediction.
+
+9.  Visualizing the prediction :
+
+  # recreate the regression plot  made earlier
+sns.regplot(x = 'Smartphone_usage', y = 'Crashes_per_100k', data = smartphones)
+
+
+# add a scatter plot layer to show the actual and predicted 2020 values
+sns.scatterplot(x = [81,81], y = [174.205,157.890], 
+                hue = ['predicted','actual'], style= ['predicted','actual'], 
+                markers = ['X','o'], palette=['navy','orange'], s=200)
+
+# add legend title
+plt.legend(title='2020')
+plt.show()
+
+image : 
+
+from the plot : By adding another layer to the regression plot, we can see the difference between the predicted and real crash rates in February 2020.
+This allows us to see how these values compare to the rest of the dataset.
